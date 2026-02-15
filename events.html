@@ -1,40 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EMS - Events</title>
-    <link rel="stylesheet" href="style.css">
+    <title>College Events</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            background: linear-gradient(to right,#1e3c72,#2a5298);
+        }
+
+        h1{
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .container{
+            width:800px;
+            margin:30px auto;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        input, select{
+            width:100%;
+            padding:10px;
+            margin:8px 0;
+            border-radius:6px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            padding:10px 20px;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+        .submit-btn{
+            background:#007bff;
+            color:white;
+        }
+
+        .submit-btn:hover{
+            background:#0056b3;
+        }
+
+        /* POPUP STYLE */
+        .popup{
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.6);
+            justify-content:center;
+            align-items:center;
+        }
+
+        .popup-content{
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            text-align:center;
+            width:350px;
+        }
+
+        .popup-content button{
+            margin:10px;
+        }
+
+        .blue-btn{
+            background:#007bff;
+            color:white;
+        }
+
+        .green-btn{
+            background:#28a745;
+            color:white;
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Available Events</h1>
-</header>
+<h1>Event Registration Form</h1>
 
 <div class="container">
-    <div class="card">
-        <h2>Tech Fest 2026</h2>
-        <p>Date: March 10</p>
-        <p>Location: College Auditorium</p>
-    </div>
+    <form onsubmit="submitForm(event)">
 
-    <div class="card">
-        <h2>Hackathon</h2>
-        <p>Date: March 15</p>
-        <p>Location: Lab Block</p>
-    </div>
+        <input type="text" placeholder="Full Name" required>
+        <input type="text" placeholder="Class" required>
+        <input type="text" placeholder="Section" required>
+        <input type="text" placeholder="Branch" required>
+        <input type="text" placeholder="Course" required>
 
-    <div class="card">
-        <h2>Cultural Night</h2>
-        <p>Date: March 20</p>
-        <p>Location: Open Ground</p>
-    </div>
+        <select required>
+            <option value="">Participation Type</option>
+            <option>Single</option>
+            <option>Team</option>
+        </select>
 
-    <div class="card">
-        <h2>Business Summit</h2>
-        <p>Date: March 25</p>
-        <p>Location: Seminar Hall</p>
+        <input type="text" placeholder="Team Members (if team)">
+        <input type="tel" placeholder="Phone Number" required>
+
+        <button type="submit" class="submit-btn">Submit Registration</button>
+
+    </form>
+</div>
+
+
+<!-- SUCCESS POPUP -->
+<div id="successPopup" class="popup">
+    <div class="popup-content">
+        <h3 style="color:green;">Registration Successful!</h3>
+        <p>Do you want to register for more events or go back to home?</p>
+
+        <button class="blue-btn" onclick="registerMore()">Register More</button>
+        <button class="green-btn" onclick="goHome()">Go Back Home</button>
     </div>
 </div>
+
+
+<script>
+function submitForm(event){
+    event.preventDefault();
+    document.getElementById("successPopup").style.display="flex";
+}
+
+function registerMore(){
+    document.getElementById("successPopup").style.display="none";
+}
+
+function goHome(){
+    window.location.href="https://nithyagowdass.github.io/college-event-project/";
+}
+</script>
 
 </body>
 </html>

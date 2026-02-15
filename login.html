@@ -17,6 +17,15 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <h3>Login Successful 🎉</h3>
+        <p>Register for an event now!</p>
+        <button onclick="goToRegister()">Register Now</button>
+    </div>
+</div>
+
 <script>
 function loginUser() {
 
@@ -27,11 +36,14 @@ function loginUser() {
     var storedPassword = localStorage.getItem("password");
 
     if(username === storedUsername && password === storedPassword) {
-        alert("Login Successful! Please register for an event.");
-        window.location.href = "register.html";
+        document.getElementById("popupModal").style.display = "block";
     } else {
         alert("Invalid Username or Password!");
     }
+}
+
+function goToRegister() {
+    window.location.href = "register.html";
 }
 </script>
 

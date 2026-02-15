@@ -1,27 +1,231 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>EMS - Home</title>
-<link rel="stylesheet" href="style.css">
+    <title>Event Management System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0; top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .event-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        .event-box button {
+            margin-top: 5px;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Event Management System</h1>
-</header>
+<header>College Event Management System</header>
+
 <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-    <a href="admin.html">Admin</a>
+    <button onclick="openLogin()">Login</button>
+    <button onclick="openRegister()">Register</button>
+    <button>Admin</button>
 </nav>
 
 <div class="container">
-    <div class="card">
-        <h2>Welcome to Event Management System</h2>
-        <p>This system helps manage events efficiently and professionally.</p>
+    <h2>Welcome to Event Portal</h2>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <h3>Login</h3>
+        <input type="email" placeholder="Email" id="loginEmail">
+        <input type="password" placeholder="Password" id="loginPassword">
+        <button onclick="loginUser()">Login</button>
     </div>
 </div>
+
+<!-- REGISTER MODAL -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <h3>User Registration</h3>
+        <input type="text" placeholder="Full Name" id="regName">
+        <input type="email" placeholder="Email" id="regEmail">
+        <input type="password" placeholder="Password" id="regPass">
+        <button onclick="registerUser()">Register</button>
+    </div>
+</div>
+
+<!-- MESSAGE MODAL -->
+<div class="modal" id="messageModal">
+    <div class="modal-content">
+        <h3 id="messageText"></h3>
+        <button onclick="closeMessage()">OK</button>
+        <div id="extraButton"></div>
+    </div>
+</div>
+
+<!-- EVENTS MODAL -->
+<div class="modal" id="eventsModal">
+    <div class="modal-content">
+        <h3>College Events List</h3>
+
+        <div id="eventsList"></div>
+
+    </div>
+</div>
+
+<!-- EVENT FORM MODAL -->
+<div class="modal" id="eventFormModal">
+    <div class="modal-content">
+        <h3>Event Registration Form</h3>
+        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Class">
+        <input type="text" placeholder="Section">
+        <input type="text" placeholder="Branch">
+        <input type="text" placeholder="Course">
+        
+        <select>
+            <option>Single</option>
+            <option>Team</option>
+        </select>
+
+        <input type="number" placeholder="Phone Number">
+        <input type="number" placeholder="Number of Team Members">
+        <input type="text" placeholder="Team Member Names (comma separated)">
+
+        <button onclick="submitEvent()">Submit Registration</button>
+    </div>
+</div>
+
+<script>
+
+function openLogin(){
+    document.getElementById("loginModal").style.display="flex";
+}
+
+function openRegister(){
+    document.getElementById("registerModal").style.display="flex";
+}
+
+function loginUser(){
+    document.getElementById("loginModal").style.display="none";
+    showMessage("Login Successful!", true);
+}
+
+function registerUser(){
+    document.getElementById("registerModal").style.display="none";
+    showEvents();
+}
+
+function showMessage(text, showRegister){
+    document.getElementById("messageModal").style.display="flex";
+    document.getElementById("messageText").innerText=text;
+
+    if(showRegister){
+        document.getElementById("extraButton").innerHTML =
+            "<br><button onclick='showEvents()'>Register for Event</button>";
+    }
+}
+
+function closeMessage(){
+    document.getElementById("messageModal").style.display="none";
+}
+
+function showEvents(){
+    document.getElementById("eventsModal").style.display="flex";
+
+    const events = [
+        "Tech Symposium - 10 March 2026",
+        "Coding Contest - 12 March 2026",
+        "Cultural Fest - 15 March 2026",
+        "Business Quiz - 18 March 2026",
+        "Robotics Workshop - 20 March 2026",
+        "Dance Competition - 22 March 2026",
+        "Photography Contest - 25 March 2026",
+        "Debate Competition - 28 March 2026",
+        "Hackathon - 30 March 2026",
+        "Sports Meet - 2 April 2026"
+    ];
+
+    let listHTML = "";
+
+    events.forEach(event=>{
+        listHTML += `
+        <div class="event-box">
+            <p>${event}</p>
+            <button onclick="openEventForm()">Register</button>
+        </div>
+        `;
+    });
+
+    document.getElementById("eventsList").innerHTML = listHTML;
+}
+
+function openEventForm(){
+    document.getElementById("eventFormModal").style.display="flex";
+}
+
+function submitEvent(){
+    alert("Event Registration Successful!");
+    document.getElementById("eventFormModal").style.display="none";
+}
+
+</script>
+
 </body>
 </html>

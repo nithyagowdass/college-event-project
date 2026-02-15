@@ -5,8 +5,9 @@
     <style>
         body{
             font-family: Arial, sans-serif;
-            margin:0;
             background: linear-gradient(to right,#1e3c72,#2a5298);
+            margin:0;
+            padding:0;
         }
 
         h1{
@@ -17,10 +18,10 @@
 
         .container{
             width:800px;
-            margin:30px auto;
+            margin:40px auto;
             background:white;
             padding:30px;
-            border-radius:12px;
+            border-radius:10px;
             box-shadow:0 5px 15px rgba(0,0,0,0.3);
         }
 
@@ -33,54 +34,16 @@
         }
 
         button{
+            background:#007bff;
+            color:white;
             padding:10px 20px;
             border:none;
             border-radius:6px;
             cursor:pointer;
         }
 
-        .submit-btn{
-            background:#007bff;
-            color:white;
-        }
-
-        .submit-btn:hover{
+        button:hover{
             background:#0056b3;
-        }
-
-        /* POPUP STYLE */
-        .popup{
-            display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.6);
-            justify-content:center;
-            align-items:center;
-        }
-
-        .popup-content{
-            background:white;
-            padding:30px;
-            border-radius:12px;
-            text-align:center;
-            width:350px;
-        }
-
-        .popup-content button{
-            margin:10px;
-        }
-
-        .blue-btn{
-            background:#007bff;
-            color:white;
-        }
-
-        .green-btn{
-            background:#28a745;
-            color:white;
         }
     </style>
 </head>
@@ -90,7 +53,7 @@
 <h1>Event Registration Form</h1>
 
 <div class="container">
-    <form onsubmit="submitForm(event)">
+    <form onsubmit="return handleSubmit()">
 
         <input type="text" placeholder="Full Name" required>
         <input type="text" placeholder="Class" required>
@@ -107,36 +70,28 @@
         <input type="text" placeholder="Team Members (if team)">
         <input type="tel" placeholder="Phone Number" required>
 
-        <button type="submit" class="submit-btn">Submit Registration</button>
+        <button type="submit">Submit Registration</button>
 
     </form>
 </div>
 
-
-<!-- SUCCESS POPUP -->
-<div id="successPopup" class="popup">
-    <div class="popup-content">
-        <h3 style="color:green;">Registration Successful!</h3>
-        <p>Do you want to register for more events or go back to home?</p>
-
-        <button class="blue-btn" onclick="registerMore()">Register More</button>
-        <button class="green-btn" onclick="goHome()">Go Back Home</button>
-    </div>
-</div>
-
-
 <script>
-function submitForm(event){
-    event.preventDefault();
-    document.getElementById("successPopup").style.display="flex";
-}
+function handleSubmit(){
 
-function registerMore(){
-    document.getElementById("successPopup").style.display="none";
-}
+    // Show confirmation popup
+    var userChoice = confirm("Registration Successful!\n\nDo you want to exit?");
 
-function goHome(){
-    window.location.href="https://nithyagowdass.github.io/college-event-project/";
+    if(userChoice === true){
+        // YES clicked
+        window.location.href = "https://nithyagowdass.github.io/college-event-project/";
+    } else {
+        // NO clicked
+        setTimeout(function(){
+            window.location.href = "https://nithyagowdass.github.io/college-event-project/";
+        }, 2000);
+    }
+
+    return false; // prevent page refresh
 }
 </script>
 

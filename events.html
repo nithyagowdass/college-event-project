@@ -3,95 +3,197 @@
 <head>
     <title>College Events</title>
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right,#1e3c72,#2a5298);
-            margin:0;
-            padding:0;
+            background: linear-gradient(to right, #1e0033, #330066);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
         }
 
-        h1{
-            text-align:center;
-            color:white;
-            padding:20px;
+        h1 {
+            margin-top: 30px;
         }
 
-        .container{
-            width:800px;
-            margin:40px auto;
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.3);
+        .container {
+            background: white;
+            color: black;
+            width: 60%;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
         }
 
-        input, select{
-            width:100%;
-            padding:10px;
-            margin:8px 0;
-            border-radius:6px;
-            border:1px solid #ccc;
+        .event-box {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
         }
 
-        button{
-            background:#007bff;
-            color:white;
-            padding:10px 20px;
-            border:none;
-            border-radius:6px;
-            cursor:pointer;
+        .event-box h3 {
+            margin-bottom: 10px;
         }
 
-        button:hover{
-            background:#0056b3;
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .form-section {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .form-section input,
+        .form-section select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row input {
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
 
-<h1>Event Registration Form</h1>
+<h1>College Events</h1>
 
 <div class="container">
-    <form onsubmit="return handleSubmit()">
 
-        <input type="text" placeholder="Full Name" required>
-        <input type="text" placeholder="Class" required>
-        <input type="text" placeholder="Section" required>
-        <input type="text" placeholder="Branch" required>
-        <input type="text" placeholder="Course" required>
+    <!-- EVENTS LIST -->
 
-        <select required>
-            <option value="">Participation Type</option>
-            <option>Single</option>
-            <option>Team</option>
-        </select>
+    <div class="event-box">
+        <h3>Tech Symposium - 12 March 2026</h3>
+        <button class="btn" onclick="showForm('Tech Symposium')">Register</button>
+    </div>
 
-        <input type="text" placeholder="Team Members (if team)">
-        <input type="tel" placeholder="Phone Number" required>
+    <div class="event-box">
+        <h3>Coding Challenge - 25 April 2026</h3>
+        <button class="btn" onclick="showForm('Coding Challenge')">Register</button>
+    </div>
 
-        <button type="submit">Submit Registration</button>
+    <div class="event-box">
+        <h3>Cultural Fest - 10 May 2026</h3>
+        <button class="btn" onclick="showForm('Cultural Fest')">Register</button>
+    </div>
 
-    </form>
+    <div class="event-box">
+        <h3>Business Quiz - 18 June 2026</h3>
+        <button class="btn" onclick="showForm('Business Quiz')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Robotics Workshop - 5 July 2026</h3>
+        <button class="btn" onclick="showForm('Robotics Workshop')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>AI Seminar - 22 August 2026</h3>
+        <button class="btn" onclick="showForm('AI Seminar')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Photography Contest - 15 September 2026</h3>
+        <button class="btn" onclick="showForm('Photography Contest')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Startup Pitch - 3 October 2026</h3>
+        <button class="btn" onclick="showForm('Startup Pitch')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Hackathon - 20 November 2026</h3>
+        <button class="btn" onclick="showForm('Hackathon')">Register</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Sports Meet - 8 December 2026</h3>
+        <button class="btn" onclick="showForm('Sports Meet')">Register</button>
+    </div>
+
+
+    <!-- REGISTRATION FORM -->
+
+    <div class="form-section" id="registrationForm">
+        <h2 id="eventTitle"></h2>
+
+        <form onsubmit="return handleSubmit(event)">
+
+            <label>Full Name</label>
+            <input type="text" required>
+
+            <div class="row">
+                <input type="text" placeholder="Class" required>
+                <input type="text" placeholder="Section" required>
+            </div>
+
+            <div class="row">
+                <input type="text" placeholder="Branch" required>
+                <input type="text" placeholder="Course" required>
+            </div>
+
+            <label>Participation Type</label>
+            <select required>
+                <option value="">Select</option>
+                <option>Single</option>
+                <option>Team</option>
+            </select>
+
+            <label>Phone Number</label>
+            <input type="text" required>
+
+            <label>Team Members (If Team)</label>
+            <input type="text" placeholder="Enter Team Member Names">
+
+            <br><br>
+            <button type="submit" class="btn">Submit Registration</button>
+
+        </form>
+    </div>
+
 </div>
 
 <script>
-function handleSubmit(){
+function showForm(eventName) {
+    document.getElementById("registrationForm").style.display = "block";
+    document.getElementById("eventTitle").innerText = "Register for " + eventName;
+    window.scrollTo(0, document.body.scrollHeight);
+}
 
-    // Show confirmation popup
-    var userChoice = confirm("Registration Successful!\n\nDo you want to exit?");
+function handleSubmit(event) {
+    event.preventDefault();
 
-    if(userChoice === true){
-        // YES clicked
-        window.location.href = "https://nithyagowdass.github.io/college-event-project/";
+    var exitChoice = confirm("Registration Successful!\n\nDo you want to exit?");
+
+    if (exitChoice) {
+        window.location.href = "index.html";
     } else {
-        // NO clicked
-        setTimeout(function(){
-            window.location.href = "https://nithyagowdass.github.io/college-event-project/";
+        setTimeout(function() {
+            window.location.href = "index.html";
         }, 2000);
     }
 
-    return false; // prevent page refresh
+    return false;
 }
 </script>
 

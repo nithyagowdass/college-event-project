@@ -27,8 +27,8 @@ function loginUser() {
     var storedPassword = localStorage.getItem("password");
 
     if(username === storedUsername && password === storedPassword) {
-        alert("Login Successful!");
-        window.location.href = "dashboard.html";
+        alert("Login Successful! Please register for an event.");
+        window.location.href = "register.html";
     } else {
         alert("Invalid Username or Password!");
     }

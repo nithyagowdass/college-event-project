@@ -1,40 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>EMS - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<h2 class="section-title">Available Events</h2>
 
-<header>
-    <h1>Welcome to Event Management System</h1>
-</header>
+<div class="events-container">
 
-<div class="container">
-    <div class="card">
-        <h2>Dashboard</h2>
-        <br>
-        <button onclick="goToEvents()">View Events</button>
-        <br><br>
-        <button onclick="goToRegister()">Register</button>
-        <br><br>
-        <button onclick="goToAdmin()">Admin Panel</button>
-    </div>
+  <div class="event-card">
+    <h3>Tech Fest 2026</h3>
+    <p class="event-date">Date: March 10, 2026</p>
+    <button class="register-btn" onclick="openEventForm('Tech Fest 2026')">Register</button>
+  </div>
+
+  <div class="event-card">
+    <h3>Cultural Night</h3>
+    <p class="event-date">Date: April 5, 2026</p>
+    <button class="register-btn" onclick="openEventForm('Cultural Night')">Register</button>
+  </div>
+
+  <div class="event-card">
+    <h3>Business Quiz</h3>
+    <p class="event-date">Date: May 18, 2026</p>
+    <button class="register-btn" onclick="openEventForm('Business Quiz')">Register</button>
+  </div>
+
+  <div class="event-card">
+    <h3>Robotics Workshop</h3>
+    <p class="event-date">Date: June 12, 2026</p>
+    <button class="register-btn" onclick="openEventForm('Robotics Workshop')">Register</button>
+  </div>
+
 </div>
-
-<script>
-function goToEvents() {
-    window.location.href = "events.html";
-}
-
-function goToRegister() {
-    window.location.href = "register.html";
-}
-
-function goToAdmin() {
-    window.location.href = "admin.html";
-}
-</script>
-
-</body>
-</html>

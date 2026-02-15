@@ -1,3 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMS - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Event Management System</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <h2>Register</h2>
+
+        <input type="text" id="fullname" placeholder="Full Name"><br>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+
+        <button onclick="registerUser()">Register</button>
+    </div>
+</div>
+
 <script>
 function registerUser() {
 
@@ -10,11 +40,15 @@ function registerUser() {
         return;
     }
 
-    // Save fullname properly
     localStorage.setItem("fullname", fullname);
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
 
     alert("Registration Successful!");
 
-    window.location.href = "dashboard.html";
+    window.location.href = "login.html";
 }
 </script>
+
+</body>
+</html>

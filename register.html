@@ -1,42 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EMS - Register</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1a0033, #4b0082);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .register-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .back-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        .success {
+            color: green;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="container">
-    <div class="card">
-        <h2>Register for Event</h2>
+    <h2>Event Registration</h2>
 
-        <input type="text" id="fullname" placeholder="Full Name"><br><br>
+    <form id="registrationForm">
+        <input type="text" placeholder="Enter Your Name" required><br>
+        <input type="email" placeholder="Enter Your Email" required><br>
+        <input type="text" placeholder="Enter Your Department" required><br>
 
-        <select id="event">
-            <option value="">Select Event</option>
-            <option value="Tech Fest 2026">Tech Fest 2026</option>
-            <option value="Hackathon">Hackathon</option>
-            <option value="Cultural Night">Cultural Night</option>
-            <option value="Business Summit">Business Summit</option>
-        </select><br><br>
+        <button type="submit" class="register-btn">Register</button>
+    </form>
 
-        <button onclick="registerEvent()">Register</button>
-    </div>
+    <p class="success" id="successMessage">✅ Registration Successful!</p>
+
+    <button onclick="goHome()" class="back-btn" id="backButton">
+        Go Back to Dashboard
+    </button>
 </div>
 
 <script>
-function registerEvent() {
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    var name = document.getElementById("fullname").value;
-    var event = document.getElementById("event").value;
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("backButton").style.display = "inline-block";
 
-    if(name === "" || event === "") {
-        alert("Please fill all details!");
-        return;
+        this.reset();
+    });
+
+    function goHome() {
+        window.location.href = "index.html"; 
     }
-
-    alert("Successfully Registered for " + event + " 🎉");
-}
 </script>
 
 </body>

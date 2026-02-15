@@ -7,86 +7,33 @@
 <body>
 
 <header>
-    <h1>Event Management System - Dashboard</h1>
+    <h1>Welcome to Event Management System</h1>
 </header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Logout</a>
-</nav>
-
 <div class="container">
-
-    <h2>Available Events</h2>
-
     <div class="card">
-        <h3>Tech Fest 2026</h3>
-        <p>Date: March 10, 2026</p>
-        <button onclick="registerEvent('Tech Fest 2026')">Register</button>
+        <h2>Dashboard</h2>
+        <br>
+        <button onclick="goToEvents()">View Events</button>
+        <br><br>
+        <button onclick="goToRegister()">Register</button>
+        <br><br>
+        <button onclick="goToAdmin()">Admin Panel</button>
     </div>
-
-    <div class="card">
-        <h3>Cultural Night</h3>
-        <p>Date: April 5, 2026</p>
-        <button onclick="registerEvent('Cultural Night')">Register</button>
-    </div>
-
-    <div class="card">
-        <h3>Sports Meet</h3>
-        <p>Date: May 15, 2026</p>
-        <button onclick="registerEvent('Sports Meet')">Register</button>
-    </div>
-
-    <hr>
-
-    <h2>My Registered Events</h2>
-    <ul id="myEvents"></ul>
-
 </div>
 
 <script>
-
-// Check if logged in
-var user = localStorage.getItem("fullname");
-
-if (!user) {
-    alert("Please login first!");
-    window.location.href = "login.html";
+function goToEvents() {
+    window.location.href = "events.html";
 }
 
-// Load registered events
-function loadEvents() {
-    var events = JSON.parse(localStorage.getItem("events")) || [];
-    var list = document.getElementById("myEvents");
-    list.innerHTML = "";
-
-    events.forEach(function(event) {
-        var li = document.createElement("li");
-        li.textContent = event;
-        list.appendChild(li);
-    });
+function goToRegister() {
+    window.location.href = "register.html";
 }
 
-// Register event
-function registerEvent(eventName) {
-
-    var events = JSON.parse(localStorage.getItem("events")) || [];
-
-    if (events.includes(eventName)) {
-        alert("Already registered for this event!");
-        return;
-    }
-
-    events.push(eventName);
-    localStorage.setItem("events", JSON.stringify(events));
-
-    alert(user + " successfully registered for " + eventName + "!");
-    loadEvents();
+function goToAdmin() {
+    window.location.href = "admin.html";
 }
-
-// Load events when page opens
-loadEvents();
-
 </script>
 
 </body>
